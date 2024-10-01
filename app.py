@@ -3,9 +3,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# Read CSV (directly from repository)
-url = 'https://github.com/paul-london/Sprint-4-Project/blob/main/vehicles_us.csv'
-data = pd.read_csv(url, on_bad_lines='skip')
+# Read CSV
+data = pd.read_csv('U:/Documents/GitHub/Sprint-4-Project/vehicles_us.csv')
 
 # Data cleanup
 # There are 51525 rows of information, and some columns have missing values: model_year, cylinders, odometer, paint_color, and is_4wd
@@ -34,14 +33,15 @@ hist.update_layout(bargap=0.1)
 st.plotly_chart(hist)
 
 # Scatter plot of price vs. odometer reading
-color_map = {'gas': 'red', 'hybrid': 'blue', 'electric': 'green', 'diesel': 'orange', 'other':'black'}
+color_map = {'gas': 'red', 'hybrid': 'blue', 'electric': 'green', 'diesel': 'orange', 'other': 'black'}
 scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Fuel Type)', x='odometer', y='price', hover_data=['odometer', 'price'], color='fuel', color_discrete_map=color_map)
 st.plotly_chart(scatter_price_odo)
 
 # Making checkbox to alter behavior of scatter plot between sorting by fuel type to sorting by vehicle condition
-checked = st.checkbox('Change scatterplot to sort by Vehicle Condition')
+checked = st.checkbox('If checked: Change scatterplot to sort by Vehicle Condition')
 if checked:
     st.write('Scatterplot will sort by Vehicle Condition')
-    scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Fuel Type)', x='odometer', y='price', hover_data=['odometer', 'price'], color='condition', color_discrete_map=color_map)
+    color_map_cond = {'salvage': 'red', 'like new': 'blue', 'good': 'green', 'fair': 'orange', 'excellent': 'black'}
+    scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Vehicle Condition)', x='odometer', y='price', hover_data=['odometer', 'price'], color='condition', color_discrete_map=color_map_cond)
 else:
     st.write('Scatterplot will sort by Fuel Type')

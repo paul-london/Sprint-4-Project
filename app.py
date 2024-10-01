@@ -5,7 +5,7 @@ import plotly.express as px
 
 # Read CSV (directly from repository)
 url = 'https://github.com/paul-london/Sprint-4-Project/blob/main/vehicles_us.csv'
-data = pd.read_csv(url, error_bad_lines=False)
+data = pd.read_csv(url, on_bad_lines='skip')
 
 # Data cleanup
 # There are 51525 rows of information, and some columns have missing values: model_year, cylinders, odometer, paint_color, and is_4wd

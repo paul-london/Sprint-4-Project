@@ -32,16 +32,16 @@ hist = px.histogram(data, x='model_year', title='Model Year Frequency', nbins=10
 hist.update_layout(bargap=0.1)
 st.plotly_chart(hist)
 
-# Scatter plot of price vs. odometer reading
-color_map = {'gas': 'red', 'hybrid': 'blue', 'electric': 'green', 'diesel': 'orange', 'other': 'black'}
-scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Fuel Type)', x='odometer', y='price', hover_data=['odometer', 'price'], color='fuel', color_discrete_map=color_map)
-st.plotly_chart(scatter_price_odo)
-
 # Making checkbox to alter behavior of scatter plot between sorting by fuel type to sorting by vehicle condition
 checked = st.checkbox('If checked: Change scatterplot to sort by Vehicle Condition')
 if checked:
     st.write('Scatterplot will sort by Vehicle Condition')
+    # Scatter plot of price vs. odometer reading
     color_map_cond = {'salvage': 'red', 'like new': 'blue', 'good': 'green', 'fair': 'orange', 'excellent': 'black'}
     scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Vehicle Condition)', x='odometer', y='price', hover_data=['odometer', 'price'], color='condition', color_discrete_map=color_map_cond)
+    st.plotly_chart(scatter_price_odo)
 else:
     st.write('Scatterplot will sort by Fuel Type')
+    color_map = {'gas': 'red', 'hybrid': 'blue', 'electric': 'green', 'diesel': 'orange', 'other': 'black'}
+    scatter_price_odo = px.scatter(data, title='Sale Price vs. Odometer Reading (by Fuel Type)', x='odometer', y='price', hover_data=['odometer', 'price'], color='fuel', color_discrete_map=color_map)
+    st.plotly_chart(scatter_price_odo)

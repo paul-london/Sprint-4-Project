@@ -46,7 +46,7 @@ checked = st.checkbox('If checked: Change scatterplot to sort by Vehicle Conditi
 if checked:
     st.write('Scatterplot will sort by Vehicle Condition')
     # Scatter plot of price vs. odometer reading
-    color_map_cond = {'salvage': 'red', 'like new': 'blue', 'good': 'green', 'fair': 'orange', 'excellent': 'black'}
+    color_map_cond = {'salvage': 'red', 'like new': 'blue', 'good': 'green', 'fair': 'orange', 'excellent': 'black', 'new': 'yellow'}
     data_filtered_scatter = data[(data['odometer'] < 400000) & (data['price'] < 100000)]
     scatter_price_odo = px.scatter(data_filtered_scatter, title='Sale Price vs. Odometer Reading (by Vehicle Condition)', x='odometer', y='price', hover_data=['odometer', 'price'], color='condition', color_discrete_map=color_map_cond)
     st.plotly_chart(scatter_price_odo)

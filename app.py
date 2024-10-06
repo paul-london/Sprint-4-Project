@@ -34,7 +34,7 @@ data['is_4wd'] = data['is_4wd'].astype(bool)
 
 # Header and brief introduction
 st.header('Analysis of Car Sales Advertisements')
-st.text('We are working with a dataset of used car advertisements. As part of this project, we will take a look at the data itself, make sure it is complete and correct, and gather insights using plots and analysis. Please take a moment to explore the various visualizations and analyses.')
+st.text('We are working with a dataset of used car advertisements. \nAs part of this project, we will take a look at the data itself, make sure it is complete and correct, and gather insights using plots and analysis. \nPlease take a moment to explore the various visualizations and analyses.')
 
 # Histogram of Model Years of the cars - outliers removed (model year > 1989)
 data_filtered_hist = data[data['model_year'] > 1989]
